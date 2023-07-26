@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import '../style/Cell.css';
 
-//TODO: el dissabled no va cutre
+//TODO: el dissabled va cutre
 function Cell({ positionX, positionY, isMine, minesAround, isCovered, tagStatus, leftClickingCell, rightClickingCell, gameStatus }) {
    
     const changeDisplayWhenPlaying = () => {

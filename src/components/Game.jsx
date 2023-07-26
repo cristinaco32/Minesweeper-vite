@@ -6,11 +6,24 @@ import Score from "./Score";
 import PauseModal from './PauseModal';
 import MockData from './MockData';
 import { generateBoard, copyObject, uncoverAllBadTagedMines, uncoverAllMines, uncoverCascade } from "../logic/boardLogic.js"
+import { generateBoardFromMockData, countMines } from '../logic/testsUtils/mockData';
 
 function Game({ width, height, numberMines, test }) {
 
-    const getBoardFromMockData = () => {
-        return (generateBoard(width, height, numberMines))
+    const getBoardFromMockData = (text) => {
+        console.log(text)
+        const newBoard = generateBoardFromMockData(text)
+        const numberMinesInBoard = countMines(newBoard)
+        const rowLenght = newBoard.length
+        const columnLenght = newBoard[0].length
+        if (newBoard !== null) {
+            setRemainingMines(numberMinesInBoard)
+            setGameStatus('before-start')
+            setRemainingCellsToWin(rowLenght * columnLenght - numberMinesInBoard)
+            setBoard(newBoard)
+        } else {
+            //TODO: avisar entrada erronia
+        }
     }
 
     const leftClickingCell = (positionX, positionY) => {
@@ -21,8 +34,8 @@ function Game({ width, height, numberMines, test }) {
         newBoard[positionY][positionX].isCovered = false
         if (board[positionY][positionX].isMine) {
             setGameStatus('lose')
-            uncoverAllMines(newBoard, width, height)
-            uncoverAllBadTagedMines(newBoard, width, height)
+            uncoverAllMines(newBoard)
+            uncoverAllBadTagedMines(newBoard)
             newBoard[positionY][positionX].tagStatus = 'exploded'
         } else {
             let newRemainingCellsToWin = remainingCellsToWin
@@ -30,7 +43,7 @@ function Game({ width, height, numberMines, test }) {
                 setRemainingMines(remainingMines + 1)
             }
             if (board[positionY][positionX].minesAround === 0) {
-                newRemainingCellsToWin -= uncoverCascade(newBoard, positionX, positionY, width, height)
+                newRemainingCellsToWin -= uncoverCascade(newBoard, positionX, positionY)
 
             }
             setRemainingCellsToWin(newRemainingCellsToWin - 1)
@@ -72,13 +85,7 @@ function Game({ width, height, numberMines, test }) {
     }
 
     const [board, setBoard] = useState(() => {
-        let newBoard = null
-        if (test === true) {
-            newBoard = getBoardFromMockData()
-        } else {
-            newBoard = generateBoard(width, height, numberMines)
-        }
-        return (newBoard)
+        return (generateBoard(width, height, numberMines))
     })
     const [remainingMines, setRemainingMines] = useState(numberMines)
     const [gameStatus, setGameStatus] = useState('before-start')
@@ -97,13 +104,12 @@ function Game({ width, height, numberMines, test }) {
 
     return (
         <>
-            {test && <MockData />}
-            <table className="Game" >
+            {test && <MockData getMockData={getBoardFromMockData} />}
+            <table className="Game" data-testid='game-table'>
                 <Score remainingMines={remainingMines} resetGame={resetGame} gameStatus={gameStatus} pauseGame={pauseGame} continueGame={continueGame} />
                 {(gameStatus === 'pause') && <PauseModal />}
                 <Board board={board} leftClickingCell={leftClickingCell} rightClickingCell={rightClickingCell} gameStatus={gameStatus} />
             </table>
-            <p data-testid='game-table'>test</p>
         </>
     );
 }

@@ -50,8 +50,7 @@ Then all the cells should be hidden
 # Scenario: Starting game - All the cells should be enabled
 # Then all the cells should be enabled
 
-# #CASES OF CLICKING CELL
-# @ignore
+#CASES OF CLICKING CELL
 # Scenario: Left clicking a cell - The cell should be uncovered
 # Given the player loads the following mock data:
 # """

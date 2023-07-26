@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.17% </span>
+                <span class="strong">60.46% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>52/85</span>
+                <span class='fraction'>52/86</span>
             </div>
         
             
@@ -175,7 +175,8 @@
 <a name='L110'></a><a href='#L110'>110</a>
 <a name='L111'></a><a href='#L111'>111</a>
 <a name='L112'></a><a href='#L112'>112</a>
-<a name='L113'></a><a href='#L113'>113</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">108x</span>
 <span class="cline-any cline-yes">108x</span>
 <span class="cline-any cline-yes">108x</span>
@@ -184,8 +185,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">108x</span>
 <span class="cline-any cline-yes">295x</span>
-<span class="cline-any cline-yes">816x</span>
-<span class="cline-any cline-yes">106x</span>
+<span class="cline-any cline-yes">814x</span>
+<span class="cline-any cline-yes">118x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -260,6 +261,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -304,7 +306,7 @@
     return numMinesAround
 }
 &nbsp;
-const fillBoardWithProximities = (board, width, height) =&gt; {
+export const <span class="cstat-no" title="statement not covered" >fillBoardWithProximities </span>= (board, width, height) =&gt; {
     for (let rowIndex = 0; rowIndex &lt; height; rowIndex++) {
         for (let columnIndex = 0; columnIndex &lt; width; columnIndex++) {
             if (board[rowIndex][columnIndex].isMine === false) {
@@ -358,9 +360,9 @@ export const <span class="cstat-no" title="statement not covered" >copyObject </
 <span class="cstat-no" title="statement not covered" >    return JSON.parse(JSON.stringify(boardToCopy))</span>
 }
 &nbsp;
-export const <span class="cstat-no" title="statement not covered" >uncoverAllMines </span>= <span class="fstat-no" title="function not covered" >(n</span>ewBoard, width, height ) =&gt; {
-<span class="cstat-no" title="statement not covered" >    for (let rowIndex = <span class="cstat-no" title="statement not covered" >0; r</span>owIndex &lt; height; rowIndex++) {</span>
-<span class="cstat-no" title="statement not covered" >        for (let columnIndex = <span class="cstat-no" title="statement not covered" >0; c</span>olumnIndex &lt; width; columnIndex++) {</span>
+export const <span class="cstat-no" title="statement not covered" >uncoverAllMines </span>= <span class="fstat-no" title="function not covered" >(n</span>ewBoard ) =&gt; {
+<span class="cstat-no" title="statement not covered" >    for (let rowIndex = <span class="cstat-no" title="statement not covered" >0; r</span>owIndex &lt; newBoard.length; rowIndex++) {</span>
+<span class="cstat-no" title="statement not covered" >        for (let columnIndex = <span class="cstat-no" title="statement not covered" >0; c</span>olumnIndex &lt; newBoard[0].length; columnIndex++) {</span>
 <span class="cstat-no" title="statement not covered" >            <span class="missing-if-branch" title="if path not taken" >I</span>if (newBoard[rowIndex][columnIndex].isMine &amp;&amp; newBoard[rowIndex][columnIndex].tagStatus !== 'flag' ) {</span>
 <span class="cstat-no" title="statement not covered" >                newBoard[rowIndex][columnIndex].isCovered = false</span>
             }
@@ -368,22 +370,23 @@ export const <span class="cstat-no" title="statement not covered" >uncoverAllMin
     }
 }
 &nbsp;
-export const <span class="cstat-no" title="statement not covered" >uncoverAllBadTagedMines </span>= <span class="fstat-no" title="function not covered" >(n</span>ewBoard, width, height) =&gt; {
-<span class="cstat-no" title="statement not covered" >    for (let rowIndex = <span class="cstat-no" title="statement not covered" >0; r</span>owIndex &lt; height; rowIndex++) {</span>
-<span class="cstat-no" title="statement not covered" >        for (let columnIndex = <span class="cstat-no" title="statement not covered" >0; c</span>olumnIndex &lt; width; columnIndex++) {</span>
-<span class="cstat-no" title="statement not covered" >            <span class="missing-if-branch" title="if path not taken" >I</span>if (newBoard[rowIndex][columnIndex].isMine === false &amp;&amp; newBoard[rowIndex][columnIndex].tagStatus === 'flag') {</span>
+export const <span class="cstat-no" title="statement not covered" >uncoverAllBadTagedMines </span>= <span class="fstat-no" title="function not covered" >(n</span>ewBoard) =&gt; {
+<span class="cstat-no" title="statement not covered" >    for (let rowIndex = <span class="cstat-no" title="statement not covered" >0; r</span>owIndex &lt; newBoard.length; rowIndex++) {</span>
+<span class="cstat-no" title="statement not covered" >        for (let columnIndex = <span class="cstat-no" title="statement not covered" >0; c</span>olumnIndex &lt; newBoard[0].length; columnIndex++) {</span>
+<span class="cstat-no" title="statement not covered" >            <span class="missing-if-branch" title="if path not taken" >I</span>if (newBoard[rowIndex][columnIndex].isMine === false &amp;&amp;</span>
+                 newBoard[rowIndex][columnIndex].tagStatus === 'flag') {
 <span class="cstat-no" title="statement not covered" >                newBoard[rowIndex][columnIndex].isCovered = false</span>
             }
         }
     }
 }
 &nbsp;
-export const <span class="cstat-no" title="statement not covered" >uncoverCascade </span>= <span class="fstat-no" title="function not covered" >(n</span>ewBoard, x, y,width, height) =&gt; {
+export const <span class="cstat-no" title="statement not covered" >uncoverCascade </span>= <span class="fstat-no" title="function not covered" >(n</span>ewBoard, x, y) =&gt; {
     let newCellsUncovered = <span class="cstat-no" title="statement not covered" >0</span>
     let startY = <span class="cstat-no" title="statement not covered" >Math.max(y - 1, 0)</span>
     let startX = <span class="cstat-no" title="statement not covered" >Math.max(x - 1, 0)</span>
-    let finishY = <span class="cstat-no" title="statement not covered" >Math.min(y + 1, height - 1)</span>
-    let finishX = <span class="cstat-no" title="statement not covered" >Math.min(x + 1, width - 1)</span>
+    let finishY = <span class="cstat-no" title="statement not covered" >Math.min(y + 1, newBoard.length - 1)</span>
+    let finishX = <span class="cstat-no" title="statement not covered" >Math.min(x + 1, newBoard[0].length - 1)</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    for (let rowIndex = <span class="cstat-no" title="statement not covered" >startY; r</span>owIndex &lt;= finishY; rowIndex++) {</span>
 <span class="cstat-no" title="statement not covered" >        for (let columnIndex = <span class="cstat-no" title="statement not covered" >startX; c</span>olumnIndex &lt;= finishX; columnIndex++) {</span>
@@ -392,7 +395,7 @@ export const <span class="cstat-no" title="statement not covered" >uncoverCascad
 <span class="cstat-no" title="statement not covered" >                    newBoard[rowIndex][columnIndex].isCovered = false</span>
 <span class="cstat-no" title="statement not covered" >                    newCellsUncovered++</span>
 <span class="cstat-no" title="statement not covered" >                    <span class="missing-if-branch" title="if path not taken" >I</span>if (newBoard[rowIndex][columnIndex].minesAround === 0) {</span>
-<span class="cstat-no" title="statement not covered" >                        newCellsUncovered += uncoverCascade(newBoard, columnIndex, rowIndex, width, height)</span>
+<span class="cstat-no" title="statement not covered" >                        newCellsUncovered += uncoverCascade(newBoard, columnIndex, rowIndex)</span>
                     }
                 }
             }
@@ -406,7 +409,7 @@ export const <span class="cstat-no" title="statement not covered" >uncoverCascad
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-26T13:58:58.254Z
+                at 2023-07-26T15:43:25.048Z
             </div>
         <script src="../prettify.js"></script>
         <script>

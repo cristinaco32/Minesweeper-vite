@@ -15,7 +15,7 @@ const getNumMinesAround = (newBoard, y, x, width, height) => {
     return numMinesAround
 }
 
-const fillBoardWithProximities = (board, width, height) => {
+export const fillBoardWithProximities = (board, width, height) => {
     for (let rowIndex = 0; rowIndex < height; rowIndex++) {
         for (let columnIndex = 0; columnIndex < width; columnIndex++) {
             if (board[rowIndex][columnIndex].isMine === false) {
@@ -69,9 +69,9 @@ export const copyObject = (boardToCopy) => {
     return JSON.parse(JSON.stringify(boardToCopy))
 }
 
-export const uncoverAllMines = (newBoard, width, height ) => {
-    for (let rowIndex = 0; rowIndex < height; rowIndex++) {
-        for (let columnIndex = 0; columnIndex < width; columnIndex++) {
+export const uncoverAllMines = (newBoard ) => {
+    for (let rowIndex = 0; rowIndex < newBoard.length; rowIndex++) {
+        for (let columnIndex = 0; columnIndex < newBoard[0].length; columnIndex++) {
             if (newBoard[rowIndex][columnIndex].isMine && newBoard[rowIndex][columnIndex].tagStatus !== 'flag' ) {
                 newBoard[rowIndex][columnIndex].isCovered = false
             }
@@ -79,22 +79,23 @@ export const uncoverAllMines = (newBoard, width, height ) => {
     }
 }
 
-export const uncoverAllBadTagedMines = (newBoard, width, height) => {
-    for (let rowIndex = 0; rowIndex < height; rowIndex++) {
-        for (let columnIndex = 0; columnIndex < width; columnIndex++) {
-            if (newBoard[rowIndex][columnIndex].isMine === false && newBoard[rowIndex][columnIndex].tagStatus === 'flag') {
+export const uncoverAllBadTagedMines = (newBoard) => {
+    for (let rowIndex = 0; rowIndex < newBoard.length; rowIndex++) {
+        for (let columnIndex = 0; columnIndex < newBoard[0].length; columnIndex++) {
+            if (newBoard[rowIndex][columnIndex].isMine === false &&
+                 newBoard[rowIndex][columnIndex].tagStatus === 'flag') {
                 newBoard[rowIndex][columnIndex].isCovered = false
             }
         }
     }
 }
 
-export const uncoverCascade = (newBoard, x, y,width, height) => {
+export const uncoverCascade = (newBoard, x, y) => {
     let newCellsUncovered = 0
     let startY = Math.max(y - 1, 0)
     let startX = Math.max(x - 1, 0)
-    let finishY = Math.min(y + 1, height - 1)
-    let finishX = Math.min(x + 1, width - 1)
+    let finishY = Math.min(y + 1, newBoard.length - 1)
+    let finishX = Math.min(x + 1, newBoard[0].length - 1)
 
     for (let rowIndex = startY; rowIndex <= finishY; rowIndex++) {
         for (let columnIndex = startX; columnIndex <= finishX; columnIndex++) {
@@ -103,7 +104,7 @@ export const uncoverCascade = (newBoard, x, y,width, height) => {
                     newBoard[rowIndex][columnIndex].isCovered = false
                     newCellsUncovered++
                     if (newBoard[rowIndex][columnIndex].minesAround === 0) {
-                        newCellsUncovered += uncoverCascade(newBoard, columnIndex, rowIndex, width, height)
+                        newCellsUncovered += uncoverCascade(newBoard, columnIndex, rowIndex)
                     }
                 }
             }

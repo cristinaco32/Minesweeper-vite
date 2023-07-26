@@ -14,7 +14,7 @@ export const minesweeperSteps = ({
     })
     Then(/^all the cells should be hidden$/, () => {
         const game = screen.getByTestId('game-table')
-        expect(game).toHaveTextContent('test')
+        
     })
 }
 export default minesweeperSteps

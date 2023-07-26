@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function MockData({ }) {
+function MockData({ getMockData }) {
+    const [inputText, setInputText] = useState('')
+
+    const handleChange = (event) => {
+      setInputText(event.target.value)
+    };
+  
+    const handleClick = () => {
+      getMockData(inputText)
+    };
+  
+
     return (
         <div>
-            TEST
+            <textarea data-testid='MockData' autoFocus onChange={handleChange} value={inputText}/>
+            <button onClick={handleClick}>Crear</button>
         </div>
     )
 }
