@@ -3,9 +3,14 @@ import { useEffect, useState } from "react";
 import Board from "./Board";
 import Score from "./Score";
 import PauseModal from './PauseModal';
-import { generateBoard, copyObject, uncoverAllBadTagedMines, uncoverAllMines,uncoverCascade } from "../logic/boardLogic.js"
+import MockData from './MockData';
+import { generateBoard, copyObject, uncoverAllBadTagedMines, uncoverAllMines, uncoverCascade } from "../logic/boardLogic.js"
 
-function Game({ width, height, numberMines }) {
+function Game({ width, height, numberMines, test }) {
+
+    const getBoardFromMockData = () => {
+        return (generateBoard(width, height, numberMines))
+    }
 
     const leftClickingCell = (positionX, positionY) => {
         if (gameStatus === 'before-start') {
@@ -36,7 +41,7 @@ function Game({ width, height, numberMines }) {
         event.preventDefault()
         if (gameStatus === 'before-start') {
             setGameStatus('playing')
-        }        
+        }
         const newBoard = copyObject(board)
         if (board[positionY][positionX].tagStatus === 'hidden') {
             newBoard[positionY][positionX].tagStatus = 'flag'
@@ -65,7 +70,15 @@ function Game({ width, height, numberMines }) {
         setGameStatus('playing')
     }
 
-    const [board, setBoard] = useState(generateBoard(width, height, numberMines))
+    const [board, setBoard] = useState(() => {
+        let newBoard = null
+        if (test === true) {
+            newBoard = getBoardFromMockData()
+        } else {
+            newBoard = generateBoard(width, height, numberMines)
+        }
+        return (newBoard)
+    })
     const [remainingMines, setRemainingMines] = useState(numberMines)
     const [gameStatus, setGameStatus] = useState('before-start')
     const [remainingCellsToWin, setRemainingCellsToWin] = useState(width * height - numberMines)
@@ -82,11 +95,14 @@ function Game({ width, height, numberMines }) {
     }, [width, height, numberMines])
 
     return (
-        <table className="Game" >
-            <Score remainingMines={remainingMines} resetGame={resetGame} gameStatus={gameStatus} pauseGame={pauseGame} continueGame={continueGame} />
-            {(gameStatus === 'pause') && <PauseModal />}
-            <Board board={board} leftClickingCell={leftClickingCell} rightClickingCell={rightClickingCell} gameStatus={gameStatus} />
-        </table>
+        <>
+            {test && <MockData />}
+            <table className="Game" >
+                <Score remainingMines={remainingMines} resetGame={resetGame} gameStatus={gameStatus} pauseGame={pauseGame} continueGame={continueGame} />
+                {(gameStatus === 'pause') && <PauseModal />}
+                <Board board={board} leftClickingCell={leftClickingCell} rightClickingCell={rightClickingCell} gameStatus={gameStatus} />
+            </table>
+        </>
     );
 }
 

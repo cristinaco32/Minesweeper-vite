@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import { useEffect, useState } from "react";
 import Game from './components/Game'
@@ -43,8 +44,11 @@ function App() {
 
   return (
     <div className="App">
-      <Game width={width} height={height} numberMines={numberMines} />
-      <LevelSettings changeGameLevel={changeGameLevel}/>
+      <Routes>
+        <Route path='/' element={<Game width={width} height={height} numberMines={numberMines} test={false} />}></Route>
+        <Route path='/test' element={<Game width={width} height={height} numberMines={numberMines} test={true} />}></Route>
+      </Routes>
+      <LevelSettings changeGameLevel={changeGameLevel} />
     </div>
   );
 }
