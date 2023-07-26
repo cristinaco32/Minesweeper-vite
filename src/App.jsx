@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { useEffect, useState } from "react";
+import Game from './components/Game'
+import LevelSettings from './components/LevelSettings';
+import { saveLevelSettings } from './logic/storage/storage.js';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const changeGameLevel = (level) => {
+    setGameLevel(level)
+  }
+
+  const [gameLevel, setGameLevel] = useState(() => {
+    const levelFromStorage = window.localStorage.getItem('level')
+    return levelFromStorage ? levelFromStorage : 'Easy'
+  })
+  const [width, setWidth] = useState(8)
+  const [height, setHeight] = useState(8)
+  const [numberMines, setNumberMines] = useState(10)
+
+  useEffect(() => {
+    switch (gameLevel) {
+      case 'Easy':
+        setWidth(8)
+        setHeight(8)
+        setNumberMines(10)
+        saveLevelSettings('Easy')
+        break
+      case 'Intermediate':
+        setWidth(16)
+        setHeight(16)
+        setNumberMines(40)
+        saveLevelSettings('Intermediate')
+        break
+      case 'Expert':
+        setWidth(30)
+        setHeight(16)
+        setNumberMines(99)
+        saveLevelSettings('Expert')
+        break
+    }
+  }, [gameLevel])
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      <Game width={width} height={height} numberMines={numberMines} />
+      <LevelSettings changeGameLevel={changeGameLevel}/>
+    </div>
+  );
 }
 
-export default App
+export default App;
