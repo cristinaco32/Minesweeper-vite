@@ -1,3 +1,4 @@
+import React from 'react';
 import '../style/Game.css';
 import { useEffect, useState } from "react";
 import Board from "./Board";
@@ -102,6 +103,7 @@ function Game({ width, height, numberMines, test }) {
                 {(gameStatus === 'pause') && <PauseModal />}
                 <Board board={board} leftClickingCell={leftClickingCell} rightClickingCell={rightClickingCell} gameStatus={gameStatus} />
             </table>
+            <p data-testid='game-table'>test</p>
         </>
     );
 }

@@ -1,3 +1,4 @@
+import React from 'react';
 import '../style/Score.css';
 import { useEffect, useState } from "react";
 import ResetButton from './ResetButton';

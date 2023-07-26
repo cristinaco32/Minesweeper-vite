@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from "react";
 import happyFace from '../assets/win.gif';
 import sadFace from '../assets/lose.gif';

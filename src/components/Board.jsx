@@ -1,3 +1,4 @@
+import React from 'react';
 import '../style/Board.css';
 import Cell from "./Cell";
 

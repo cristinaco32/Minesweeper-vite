@@ -44,28 +44,26 @@ Background:
 Given the player opens the game
 
 #CASES OF STARTING GAME
-@ignore
 Scenario: Starting game - All the cells should be hidden
 Then all the cells should be hidden
 
-@ignore
-Scenario: Starting game - All the cells should be enabled
-Then all the cells should be enabled
+# Scenario: Starting game - All the cells should be enabled
+# Then all the cells should be enabled
 
-#CASES OF CLICKING CELL
-@ignore
-Scenario: Left clicking a cell - The cell should be uncovered
-Given the player loads the following mock data:
-"""
-| * | o |
-"""
-When the player left clicks the cell (1,2)
-Then the cell (1,2) should be uncovered
+# #CASES OF CLICKING CELL
+# @ignore
+# Scenario: Left clicking a cell - The cell should be uncovered
+# Given the player loads the following mock data:
+# """
+# | * | o |
+# """
+# When the player left clicks the cell (1,2)
+# Then the cell (1,2) should be uncovered
 
-Scenario: Uncovering a cell - The cell should be disabled
-Given the player loads the following mock data:
-"""
-| * | o |
-"""
-When the player uncovers the cell (1,2)
-Then the cell (1,2) should be disabled
+# Scenario: Uncovering a cell - The cell should be disabled
+# Given the player loads the following mock data:
+# """
+# | * | o |
+# """
+# When the player uncovers the cell (1,2)
+# Then the cell (1,2) should be disabled
