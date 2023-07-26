@@ -66,6 +66,7 @@ function Cell({ positionX, positionY, isMine, minesAround, isCovered, tagStatus,
     return (
         <td
             className={(isCovered) ? "Cell covered" : "Cell uncovered"}
+            data-testid={'Cell-' + positionY.toString() + '-' + positionX.toString()}
             onClick={() => { leftClickingCell(positionX, positionY) }}
             onContextMenu={(event) => { rightClickingCell(event, positionX, positionY) }}
         >
