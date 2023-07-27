@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../style/MockData.css';
 
 function MockData({ getMockData }) {
     const [inputText, setInputText] = useState('')
@@ -13,8 +14,8 @@ function MockData({ getMockData }) {
   
 
     return (
-        <div>
-            <textarea data-testid='mockDataLoader-textarea' autoFocus onChange={handleChange} value={inputText}/>
+        <div className='mockData-container'>
+            <textarea className='mockData-textarea' data-testid='mockDataLoader-textarea' autoFocus onChange={handleChange} value={inputText}/>
             <button data-testid='mockDataLoader-loadButton' onClick={handleClick}>Crear</button>
         </div>
     )
