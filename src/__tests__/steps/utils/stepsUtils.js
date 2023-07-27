@@ -15,25 +15,25 @@ export const fillMockData = async(mockData) => {
     await userEvent.click(button)
 }
 
-export const tagCell = async(row, col, tag) => {
+export const tagCell = (row, col, tag) => {
     const cell = screen.getByTestId('Cell-' + row + '-' + col)
     const cellText = cell.querySelector('p').textContent
     switch (tag) {
         case '!': {
             if (cellText === '') {
-                await fireEvent.contextMenu(cell)
+                fireEvent.contextMenu(cell)
             } else if (cellText === '?') {
-                await fireEvent.contextMenu(cell)
-                await fireEvent.contextMenu(cell)
+                fireEvent.contextMenu(cell)
+                fireEvent.contextMenu(cell)
             }
             break
         }
         case '?': {
             if (cellText === '') {
-                await fireEvent.contextMenu(cell)
-                await fireEvent.contextMenu(cell)
+                fireEvent.contextMenu(cell)
+                fireEvent.contextMenu(cell)
             } else if (cellText === '!') {
-                await fireEvent.contextMenu(cell)
+                fireEvent.contextMenu(cell)
             }
             break
         }
@@ -44,10 +44,14 @@ export const leftClickOnCell = async(row, col) => {
     await userEvent.click(screen.getByTestId('Cell-' + row + '-' + col))
 }
 
-export const rightClickOnCell = async(times, row, col) => {
+export const rightClickOnCell = (times, row, col) => {
     for (let i = 0; i < times; i++) {
-        await fireEvent.contextMenu(screen.getByTestId('Cell-' + row + '-' + col))
+        fireEvent.contextMenu(screen.getByTestId('Cell-' + row + '-' + col))
     }
+}
+
+export const pressRestartButton = async() => {
+    await userEvent.click(screen.getByTestId('reset-button'))
 }
 
 export const allCellsHidden = () => {
@@ -115,7 +119,6 @@ export const theCounterIs = (numberMines) => {
     expect(counter.textContent).toBe(numberMines)
 }
 
-//TODO: s'ha de canviar, no funciona
 export const resetButtonIs = (status) => {
     const resetButton = screen.getByTestId('reset-button')
     const img = resetButton.querySelector('img')
