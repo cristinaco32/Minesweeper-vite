@@ -20,7 +20,7 @@ export const tagCell = async(row, col, tag) => {
     const cellText = cell.querySelector('p').textContent
     switch (tag) {
         case '!': {
-            if (cellText === ' ') {
+            if (cellText === '') {
                 await fireEvent.contextMenu(cell)
             } else if (cellText === '?') {
                 await fireEvent.contextMenu(cell)
@@ -29,7 +29,7 @@ export const tagCell = async(row, col, tag) => {
             break
         }
         case '?': {
-            if (cellText === ' ') {
+            if (cellText === '') {
                 await fireEvent.contextMenu(cell)
                 await fireEvent.contextMenu(cell)
             } else if (cellText === '!') {
@@ -76,6 +76,12 @@ export const isUncovered = (row, col) => {
     expect(cellContent).not.toBe('?')
 }
 
+export const isCovered = (row, col) => {
+    const cell = screen.getByTestId('Cell-' + row + '-' + col)
+    const cellContent = cell.textContent
+    expect(['','!','?']).toContain(cellContent)
+}
+
 export const isDisabled = (row, col) => {
     const cell = screen.getByTestId('Cell-' + row + '-' + col)
     expect(cell).toHaveClass('uncovered')
@@ -86,10 +92,14 @@ export const theCellIs = (row, col, status) => {
     const cellText = screen.getByTestId('Cell-' + row + '-' + col + '-text')
     let display = status
     switch (status) {
+        case "x":
+            display = "×"
+            break
         case '0':
-            display = ' '
+            display = " "
+            break
         case '.':
-            display = ''
+            display = ""
             break
         case '@':
             expect(cellText).toHaveClass('cell-red')
@@ -100,9 +110,15 @@ export const theCellIs = (row, col, status) => {
     expect(cell.textContent).toBe(display)
 }
 
-//TODO: fer diferent
-export const resetButtonIs = (status) => {
-    // const resetButton = screen.getByTestId('reset-button')
-    // const img = resetButton.querySelector('img')
-    // expect(img).toHaveProperty('src', `/src/assets/${status}.gif`)
+export const theCounterIs = (numberMines) => {
+    const counter = screen.getByTestId('mines-counter')
+    expect(counter.textContent).toBe(numberMines)
 }
+
+//TODO: s'ha de canviar, no funciona
+export const resetButtonIs = (status) => {
+    const resetButton = screen.getByTestId('reset-button')
+    const img = resetButton.querySelector('img')
+    expect(img).toHaveProperty('alt', status)
+}
+

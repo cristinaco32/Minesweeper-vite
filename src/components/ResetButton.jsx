@@ -25,7 +25,7 @@ function ResetButton({ gameStatus, resetGame }) {
 
     return (
         <button className='button' onClick={resetGame}>
-            <img src={imagePath}></img>
+            <img src={imagePath} alt={gameStatus}></img>
         </button>
 
     );

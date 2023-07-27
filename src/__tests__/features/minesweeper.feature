@@ -171,7 +171,7 @@ Given the player loads the following mock data:
 """
 And the player puts "?" in the cell (2,1)
 When the player uncovers the cell (1,1)
-Then the cell (1,2) should be "#"
+Then the cell (2,1) should be "#"
 
 Scenario: Losing the game - The flags with mine cells should stay as flags
 Given the player loads the following mock data:
@@ -364,7 +364,7 @@ And the player puts "!" in the cell (4,3)
 When the player uncovers the cell (1,4)
 Then the cell (1,3) should be "!"
 And the cell (4,3) should be "!"
-And the cell (1,2) should be uncovered
+And the cell (1,2) should be covered
 
 Scenario: The waterfall triggers - The inconclusive cells without mines should be uncovered
 Given the player loads the following mock data:

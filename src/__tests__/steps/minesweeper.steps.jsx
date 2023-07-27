@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/extend-expect'
-import { openTheGame, fillMockData, tagCell, leftClickOnCell, rightClickOnCell, allCellsHidden, allCellsEnabled, allCellsDisabled, isUncovered, isDisabled, theCellIs, resetButtonIs } from './utils/stepsUtils.js'
+import { openTheGame, fillMockData, tagCell, leftClickOnCell, rightClickOnCell, allCellsHidden, allCellsEnabled, allCellsDisabled, isUncovered, isCovered, isDisabled, theCellIs, theCounterIs, resetButtonIs } from './utils/stepsUtils.js'
 
 export const minesweeperSteps = ({
     given: Given,
@@ -49,11 +49,11 @@ export const minesweeperSteps = ({
     Then('the player should win', () => {
         resetButtonIs('win')
     })
-    And(/^the cell \((\d+),(\d+)\) should be covered$/, (arg0, arg1) => {
-
+    And(/^the cell \((\d+),(\d+)\) should be covered$/, (row, col) => {
+        isCovered(row, col)
     })
-    Then(/^the counter should be "(.*)"$/, (arg0) => {
-
+    Then(/^the counter should be "(.*)"$/, (num) => {
+        theCounterIs(num)
     })
 }
 export default minesweeperSteps
