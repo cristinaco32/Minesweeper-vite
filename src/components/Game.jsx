@@ -11,7 +11,6 @@ import { generateBoardFromMockData, countMines } from '../logic/testsUtils/mockD
 function Game({ width, height, numberMines, test }) {
 
     const getBoardFromMockData = (text) => {
-        console.log(text)
         const newBoard = generateBoardFromMockData(text)
         const numberMinesInBoard = countMines(newBoard)
         const rowLenght = newBoard.length
@@ -105,7 +104,7 @@ function Game({ width, height, numberMines, test }) {
     return (
         <>
             {test && <MockData getMockData={getBoardFromMockData} />}
-            <table className="Game" data-testid='game-table'>
+            <table className="Game">
                 <Score remainingMines={remainingMines} resetGame={resetGame} gameStatus={gameStatus} pauseGame={pauseGame} continueGame={continueGame} />
                 {(gameStatus === 'pause') && <PauseModal />}
                 <Board board={board} leftClickingCell={leftClickingCell} rightClickingCell={rightClickingCell} gameStatus={gameStatus} />

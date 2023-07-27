@@ -19,7 +19,7 @@ function Cell({ positionX, positionY, isMine, minesAround, isCovered, tagStatus,
             } else if (tagStatus === 'flag') {
                 setDisplay('!')
             } else {
-                setDisplay(' ')
+                setDisplay('')
             }
         }
     }
@@ -43,13 +43,13 @@ function Cell({ positionX, positionY, isMine, minesAround, isCovered, tagStatus,
         }
     }
 
-    const [display, setDisplay] = useState(null)
+    const [display, setDisplay] = useState('')
     const [colorClassName, setColorClassName] = useState('')
 
     useEffect(() => {
         switch (gameStatus) {
             case "before-start":
-                setDisplay(' ')
+                setDisplay('')
                 setColorClassName('')
                 break
             case "playing":

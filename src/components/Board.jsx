@@ -5,7 +5,7 @@ import Cell from "./Cell";
 function Board({ board, leftClickingCell, rightClickingCell, gameStatus }) {
 
     return (
-        <tbody className={(gameStatus === 'playing' || gameStatus === 'before-start') ? "Board" : "Board disabled"}>
+        <tbody data-testid='board' className={(gameStatus === 'playing' || gameStatus === 'before-start') ? "Board" : "Board disabled"}>
             {
                 board.map((row, indexY) => {
                     return (

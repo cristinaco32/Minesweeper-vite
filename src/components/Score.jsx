@@ -67,12 +67,12 @@ function Score({ remainingMines, resetGame, gameStatus, pauseGame, continueGame 
         <thead>
             <tr>
                 <td className='Score'>
-                    <div className='score-mines'>{remainingMines}</div>
+                    <div data-testid='mines-counter' className='score-mines'>{remainingMines}</div>
                     <ResetButton gameStatus={gameStatus} resetGame={resetGame} />
-                    <button className='button' onClick={setPlayPauseStatus}>
+                    <button data-testid='reset-button' className='button' onClick={setPlayPauseStatus}>
                         <img src={buttonImage}></img>
                     </button>
-                    <div className='score-time'>{(gameStatus !== 'before-start') ? timer : ''}</div>
+                    <div data-testid='time-counter' className='score-time'>{(gameStatus !== 'before-start') ? timer : ''}</div>
                 </td>
             </tr>
         </thead>

@@ -24,8 +24,6 @@ export const generateBoardFromMockData = (mockData) => {
         }))
     })
 
-    console.log(board[0].length)
-
     fillBoardWithProximities(board, board[0].length, board.length)
 
     return (board)

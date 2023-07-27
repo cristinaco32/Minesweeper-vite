@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Game from '../../../components/Game'
 import React from 'react'
@@ -7,48 +7,78 @@ export const openTheGame = () => {
     render(<Game width={8} height={8} numberMines={10} test={true} />)
 }
 
-export const fillMockData = (mockData) => {
+export const fillMockData = async(mockData) => {
     const text = screen.getByTestId('mockDataLoader-textarea')
     const button = screen.getByTestId('mockDataLoader-loadButton')
-    userEvent.clear(text)
-    userEvent.type(text, mockData)
-    userEvent.click(button)
+    await userEvent.clear(text)
+    await userEvent.type(text, mockData)
+    await userEvent.click(button)
 }
 
-export const tagCell = (row, col, tag) => {
-    if (tag === '!') {
-        rightClickOnCell(1, row, col)
-    } else if (tag === '?') {
-        rightClickOnCell(2, row, col)
+export const tagCell = async(row, col, tag) => {
+    const cell = screen.getByTestId('Cell-' + row + '-' + col)
+    const cellText = cell.querySelector('p').textContent
+    switch (tag) {
+        case '!': {
+            if (cellText === ' ') {
+                await userEvent.contextMenu(cell)
+            } else if (cellText === '?') {
+                await userEvent.contextMenu(cell)
+                await userEvent.contextMenu(cell)
+            }
+            break
+        }
+        case '?': {
+            if (cellText === ' ') {
+                await userEvent.contextMenu(cell)
+                await userEvent.contextMenu(cell)
+            } else if (cellText === '!') {
+                await userEvent.contextMenu(cell)
+            }
+            break
+        }
     }
 }
 
-export const leftClickOnCell = (row, col) => {
-    userEvent.click(screen.getByTestId('Cell-' + row + '-' + col))
+export const leftClickOnCell = async(row, col) => {
+    await userEvent.click(screen.getByTestId('Cell-' + row + '-' + col))
 }
 
-export const rightClickOnCell = (times, row, col) => {
+export const rightClickOnCell = async(times, row, col) => {
     for (let i = 0; i < times; i++) {
-        fireEvent.contextMenu(screen.getByTestId('Cell-' + row + '-' + col))
+        await userEvent.contextMenu(screen.getByTestId('Cell-' + row + '-' + col))
     }
 }
 
 export const allCellsHidden = () => {
-
+    const board = screen.getByTestId('board')
+    const cells = board.querySelector('td')
+    cells.forEach((cell) => {
+        expect(cell).toHaveTextContent('')
+    })
 }
 
 export const allCellsEnabled = () => {
+    const board = screen.getByTestId('board')
+    expect(board).not.toHaveClass('disabled')
+}
 
+export const allCellsDisabled = () => {
+    const board = screen.getByTestId('board')
+    expect(board).toHaveClass('disabled')
 }
 
 export const isUncovered = (row, col) => {
-    const cell = screen.getAllByTestId('Cell-' + row + '-' + col)
+    const cell = screen.getByTestId('Cell-' + row + '-' + col)
     const cellContent = cell.textContent
     expect(cellContent).not.toBe(' ')
+    expect(cellContent).not.toBe('!')
+    expect(cellContent).not.toBe('?')
 }
 
 export const isDisabled = (row, col) => {
-
+    const cell = screen.getByTestId('Cell-' + row + '-' + col)
+    expect(cell).toHaveClass('uncovered')
 }
 
 export const theCellIs = (row, col, status) => {
@@ -57,14 +87,21 @@ export const theCellIs = (row, col, status) => {
     let display = status
     switch (status) {
         case '0':
-        case '.':
             display = ' '
+        case '.':
+            display = ''
             break
+        case '@':
+            expect(cellText).toHaveClass('cell-red')
         case '#':
             display = '☀'
-        case '@':
-            //expect(cellText).toHaveClass('cell-red')
             break
     }
     expect(cell.textContent).toBe(display)
+}
+
+export const resetButtonIs = (status) => {
+    const resetButton = screen.getByTestId('reset-button')
+    const img = resetButton.querySelector('img')
+    expect(img).toHaveProperty('src', `/src/assets/${status}.gif`)
 }
