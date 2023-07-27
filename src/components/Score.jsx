@@ -69,7 +69,7 @@ function Score({ remainingMines, resetGame, gameStatus, pauseGame, continueGame 
                 <td className='Score'>
                     <div data-testid='mines-counter' className='score-mines'>{remainingMines}</div>
                     <ResetButton gameStatus={gameStatus} resetGame={resetGame} />
-                    <button data-testid='reset-button' className='button' onClick={setPlayPauseStatus}>
+                    <button className='button' onClick={setPlayPauseStatus}>
                         <img src={buttonImage}></img>
                     </button>
                     <div data-testid='time-counter' className='score-time'>{(gameStatus !== 'before-start') ? timer : ''}</div>

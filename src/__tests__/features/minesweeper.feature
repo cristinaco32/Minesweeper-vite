@@ -276,50 +276,59 @@ When the player uncovers the cell (2,2)
 Then the cell (1,2) should be uncovered
 And the cell (2,2) should be uncovered
 
-# #CASES OF UNCOVERED CELLS
-# Scenario Outline: Uncovering a middle cell surrounded with mines - The status should be the count of mines
-# Given the player loads the following mock data: "<board>"
-# When the player uncovers the cell (2,2)
-# Then the cell (2,2) should be "<status>"
+#CASES OF UNCOVERED CELLS
+Scenario Outline: Uncovering a middle cell surrounded with mines - The status should be the count of mines
+Given the player loads the following mock data: 
+"""
+<board>
+"""
+When the player uncovers the cell (2,2)
+Then the cell (2,2) should be "<status>"
 
-# Examples:
-# |       board | status |
-# | *oo-ooo-ooo |      1 |
-# | **o-ooo-ooo |      2 |
-# | ***-ooo-ooo |      3 |
-# | ***-*oo-ooo |      4 |
-# | ***-*o*-ooo |      5 |
-# | ***-*o*-*oo |      6 |
-# | ***-*o*-**o |      7 |
-# | ***-*o*-*** |      8 |
+Examples:
+|       board | status |
+| *oo-ooo-ooo |      1 |
+| **o-ooo-ooo |      2 |
+| ***-ooo-ooo |      3 |
+| ***-*oo-ooo |      4 |
+| ***-*o*-ooo |      5 |
+| ***-*o*-*oo |      6 |
+| ***-*o*-**o |      7 |
+| ***-*o*-*** |      8 |
 
-# Scenario Outline: Uncovering a border cell surrounded with mines - The status should be the count of mines
-# Given the player loads the following mock data: "<board>"
-# When the player uncovers the cell (1,2)
-# Then the cell (1,2) should be "<status>"
+Scenario Outline: Uncovering a border cell surrounded with mines - The status should be the count of mines
+Given the player loads the following mock data: 
+"""
+<board>
+"""
+When the player uncovers the cell (1,2)
+Then the cell (1,2) should be "<status>"
 
-# Examples:
-# |       board | status |
-# | *oo-ooo-ooo |      1 |
-# | *o*-ooo-ooo |      2 |
-# | *o*-*oo-ooo |      3 |
-# | *o*-**o-ooo |      4 |
-# | *o*-***-ooo |      5 |
-# | *o*-***-*oo |      5 |
-# | *o*-***-**o |      5 |
+Examples:
+|       board | status |
+| *oo-ooo-ooo |      1 |
+| *o*-ooo-ooo |      2 |
+| *o*-*oo-ooo |      3 |
+| *o*-**o-ooo |      4 |
+| *o*-***-ooo |      5 |
+| *o*-***-*oo |      5 |
+| *o*-***-**o |      5 |
 
-# Scenario Outline: Uncovering a corner cell surrounded with mines - The status should be the count of mines
-# Given the player loads the following mock data: "<board>"
-# When the player uncovers the cell (1,1)
-# Then the cell (1,1) should be "<status>"
+Scenario Outline: Uncovering a corner cell surrounded with mines - The status should be the count of mines
+Given the player loads the following mock data: 
+"""
+<board>
+"""
+When the player uncovers the cell (1,1)
+Then the cell (1,1) should be "<status>"
 
-# Examples:
-# |       board | status |
-# | o*o-ooo-ooo |      1 |
-# | o*o-*oo-ooo |      2 |
-# | o*o-**o-ooo |      3 |
-# | o**-***-ooo |      3 |
-# | o**-***-*** |      3 |
+Examples:
+|       board | status |
+| o*o-ooo-ooo |      1 |
+| o*o-*oo-ooo |      2 |
+| o*o-**o-ooo |      3 |
+| o**-***-ooo |      3 |
+| o**-***-*** |      3 |
 
 Scenario: Uncovering a cell - The waterfall should work
 Given the player loads the following mock data:

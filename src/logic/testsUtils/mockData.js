@@ -2,13 +2,22 @@ import { fillBoardWithProximities, generateBoard } from "../boardLogic"
 
 //TODO: controlar entrada mock data errònia + controlar l'altre format
 export const generateBoardFromMockData = (mockData) => {
-    let mockDataFormat = mockData.split('\n')
-    mockDataFormat = mockDataFormat.map((row) => {
-        return (row.split('|').filter(element => element).map((cell) => {
-            return (cell.trim())
-        }))
-    })
-    const board = mockDataFormat.map((row) => {
+    let mockDataFormated = null
+    if (mockData.includes('|')) {
+        mockDataFormated = mockData.split('\n')
+        mockDataFormated = mockDataFormated.map((row) => {
+            return (row.split('|').filter(element => element).map((cell) => {
+                return (cell.trim())
+            }))
+        })
+    } else {
+        mockDataFormated = mockData.split('-')
+        mockDataFormated = mockDataFormated.map((row) => {
+            return (row.split(''))
+        })
+    }
+
+    const board = mockDataFormated.map((row) => {
         return (row.map((cell) => {
             const newCell = {
                 isCovered: true,

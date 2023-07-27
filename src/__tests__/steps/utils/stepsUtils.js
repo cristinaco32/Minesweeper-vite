@@ -119,6 +119,6 @@ export const theCounterIs = (numberMines) => {
 export const resetButtonIs = (status) => {
     const resetButton = screen.getByTestId('reset-button')
     const img = resetButton.querySelector('img')
-    expect(img).toHaveProperty('alt', status)
+    expect(img.alt).toContain(status)
 }
 
