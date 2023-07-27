@@ -31,6 +31,10 @@ tr {
     display: table-row;
 }
 
+tbody tr {
+    align-self: center;
+}
+
 td {
     display: table-cell;
 }
