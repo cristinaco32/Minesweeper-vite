@@ -1,7 +1,6 @@
 import React from 'react';
 import '../style/LevelSettings.css';
 
-//TODO: canviar nivell reset joc
 function LevelSettings({ changeGameLevel }) {
   return (
     <section className='flex-container'>

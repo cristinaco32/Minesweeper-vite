@@ -5,6 +5,7 @@ import ResetButton from './ResetButton';
 import pause from '../assets/pause-button.png'
 import play from '../assets/play-button.png'
 
+//TODO: que es vegi si pause button és disable
 function Score({ remainingMines, resetGame, gameStatus, pauseGame, continueGame }) {
 
     const setPlayPauseStatus = () => {

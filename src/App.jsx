@@ -1,10 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
 import { useEffect, useState } from "react";
 import Game from './components/Game'
 import LevelSettings from './components/LevelSettings';
 import { saveLevelSettings } from './logic/storage/storage.js';
+import './App.css';
 
 function App() {
 
