@@ -49,7 +49,7 @@ function Cell({ positionX, positionY, isMine, minesAround, isCovered, tagStatus,
     useEffect(() => {
         switch (gameStatus) {
             case "before-start":
-                setDisplay('')
+                setDisplay(' ')
                 setColorClassName('')
                 break
             case "playing":
@@ -67,11 +67,11 @@ function Cell({ positionX, positionY, isMine, minesAround, isCovered, tagStatus,
     return (
         <td
             className={(isCovered) ? "Cell covered" : "Cell uncovered"}
-            data-testid={'Cell-' + positionY.toString() + '-' + positionX.toString()}
+            data-testid={'Cell-' + (positionY+1).toString() + '-' + (positionX+1).toString()}
             onClick={() => { leftClickingCell(positionX, positionY) }}
             onContextMenu={(event) => { rightClickingCell(event, positionX, positionY) }}
         >
-            {<p className={colorClassName}>{display}</p>}
+            <p className={colorClassName} data-testid={'Cell-' + (positionY+1).toString() + '-' + (positionX+1).toString() + '-text'}>{display}</p>
         </td>
     );
 }

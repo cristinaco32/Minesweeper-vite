@@ -14,8 +14,8 @@ function MockData({ getMockData }) {
 
     return (
         <div>
-            <textarea data-testid='MockData' autoFocus onChange={handleChange} value={inputText}/>
-            <button onClick={handleClick}>Crear</button>
+            <textarea data-testid='mockDataLoader-textarea' autoFocus onChange={handleChange} value={inputText}/>
+            <button data-testid='mockDataLoader-loadButton' onClick={handleClick}>Crear</button>
         </div>
     )
 }
