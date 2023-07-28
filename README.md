@@ -1,18 +1,19 @@
 # Minesweeper
 
-Hem replicat el següent minesweeper: **`http://birrell.org/andrew/minesweeper/`** pero afegint ->
+Hem replicat el següent minesweeper: **`http://birrell.org/andrew/minesweeper/`**. A més hem afegit:
 
-> - Escollir el nivell.
-> - Un pause del joc.
-> - LocalStorage que guardis el nivell.
+> - Escollir el nivell (permet triar entre 3: *Easy*, *Intermediate* i *Expert*).
+> - LocalStorage que guarda el nivell (permet recuperar l'últim nivell al que es va jugar).
+> - Un pause del joc (permet parar el temps, i continuar després).
 
 
 ## Routes
 
-Hem afegit un Route **`react-router-dom`** per la versió testing aixi carregar el mockData.
+Mitjançant **`react-router-dom`** hem afegit les següents rutes:
 
-```bash
-http://localhost:5173/test
-```
+> - */* -> versió normal
+> - */test* -> versió testing que permet carregar un mockData.
+
+
 
 
