@@ -1,11 +1,12 @@
 import React from 'react';
-import '../style/Board.css';
 import Cell from "./Cell";
+import { GAME_STATUS } from '../constants';
+import '../style/Board.css';
 
 function Board({ board, leftClickingCell, rightClickingCell, gameStatus }) {
 
     return (
-        <tbody data-testid='board' className={(gameStatus === 'playing' || gameStatus === 'before-start') ? "Board" : "Board disabled"}>
+        <tbody data-testid='board' className={(gameStatus === GAME_STATUS.playing || gameStatus === GAME_STATUS.beforeStart) ? "Board" : "Board disabled"}>
             {
                 board.map((row, indexY) => {
                     return (

@@ -1,13 +1,18 @@
 import React from 'react';
 import '../style/PauseModal.css';
 
-function PauseModal({ }) {
+function PauseModal({ width, height }) {
+
+    const modalStyle = {
+        width: `${width * 24}px`,
+        height: `${height * 24}px`
+    }
+
     return (
-        <tfoot>
-            <tr>
-                <td className="pauseModal"><p>Joc Pausat</p></td>
-            </tr>
-        </tfoot>
+        <tr className='modal-tr'>
+            <div className="modal" style={modalStyle}/>
+        </tr>
+        
     )
 }
 

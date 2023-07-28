@@ -1,8 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { GAME_STATUS, TAG_STATUS } from '../constants';
 import '../style/Cell.css';
 
-//TODO: el dissabled va cutre
 function Cell({ positionX, positionY, isMine, minesAround, isCovered, tagStatus, leftClickingCell, rightClickingCell, gameStatus }) {
    
     const changeDisplayWhenPlaying = () => {
@@ -11,54 +11,54 @@ function Cell({ positionX, positionY, isMine, minesAround, isCovered, tagStatus,
                 setDisplay(minesAround)
                 setColorClassName(`cell-${minesAround}`)
             } else {
-                setDisplay(' ')
+                setDisplay(TAG_STATUS.emptyCell)
             }
         } else {
             if (tagStatus === 'inconclusive') {
-                setDisplay('?')
+                setDisplay(TAG_STATUS.inconclusive)
             } else if (tagStatus === 'flag') {
-                setDisplay('!')
+                setDisplay(TAG_STATUS.flag)
             } else {
-                setDisplay('')
+                setDisplay(TAG_STATUS.hidden)
             }
         }
     }
 
     const changeDisplayWhenLose = () => {
         if (isMine && tagStatus !== 'flag') {
-            setDisplay('☀')
+            setDisplay(TAG_STATUS.mine)
             if (tagStatus === 'exploded') {
                 setColorClassName('cell-red')
             }
         }
         if (!isMine && tagStatus === 'flag') {
-            setDisplay('×')
+            setDisplay(TAG_STATUS.wronglyTagged)
             setColorClassName('cell-red')
         }
     }
 
     const changeDisplayWhenWin = () => {
         if (isMine) {
-            setDisplay('!')
+            setDisplay(TAG_STATUS.flag)
         }
     }
 
-    const [display, setDisplay] = useState('')
+    const [display, setDisplay] = useState(TAG_STATUS.hidden)
     const [colorClassName, setColorClassName] = useState('')
 
     useEffect(() => {
         switch (gameStatus) {
-            case "before-start":
-                setDisplay('')
+            case GAME_STATUS.beforeStart:
+                setDisplay(TAG_STATUS.hidden)
                 setColorClassName('')
                 break
-            case "playing":
+            case GAME_STATUS.playing:
                 changeDisplayWhenPlaying()
                 break
-            case "lose":
+            case GAME_STATUS.lost:
                 changeDisplayWhenLose()
                 break
-            case "win":
+            case GAME_STATUS.won:
                 changeDisplayWhenWin()
                 break
         }

@@ -7,32 +7,31 @@ import PauseModal from './PauseModal';
 import MockData from './MockData';
 import { generateBoard, copyObject, uncoverAllBadTagedMines, uncoverAllMines, uncoverCascade } from "../logic/boardLogic.js"
 import { generateBoardFromMockData, countMines } from '../logic/testsUtils/mockData';
+import { GAME_STATUS } from '../constants';
 
 function Game({ width, height, numberMines, test }) {
 
-    const getBoardFromMockData = (text) => {
-        const newBoard = generateBoardFromMockData(text)
+    const getBoardFromMockData = (mockDataText) => {
+        const newBoard = generateBoardFromMockData(mockDataText)
         const numberMinesInBoard = countMines(newBoard)
         const rowLenght = newBoard.length
         const columnLenght = newBoard[0].length
         if (newBoard !== null) {
             setRemainingMines(numberMinesInBoard)
-            setGameStatus('before-start')
+            setGameStatus(GAME_STATUS.beforeStart)
             setRemainingCellsToWin(rowLenght * columnLenght - numberMinesInBoard)
             setBoard(newBoard)
-        } else {
-            //TODO: avisar entrada erronia
         }
     }
 
     const leftClickingCell = (positionX, positionY) => {
-        if (gameStatus === 'before-start') {
-            setGameStatus('playing')
+        if (gameStatus === GAME_STATUS.beforeStart) {
+            setGameStatus(GAME_STATUS.playing)
         }
         const newBoard = copyObject(board)
         newBoard[positionY][positionX].isCovered = false
         if (board[positionY][positionX].isMine) {
-            setGameStatus('lose')
+            setGameStatus(GAME_STATUS.lost)
             uncoverAllMines(newBoard)
             uncoverAllBadTagedMines(newBoard)
             newBoard[positionY][positionX].tagStatus = 'exploded'
@@ -52,8 +51,8 @@ function Game({ width, height, numberMines, test }) {
 
     const rightClickingCell = (event, positionX, positionY) => {
         event.preventDefault()
-        if (gameStatus === 'before-start') {
-            setGameStatus('playing')
+        if (gameStatus === GAME_STATUS.beforeStart) {
+            setGameStatus(GAME_STATUS.playing)
         }
         const newBoard = copyObject(board)
         if (board[positionY][positionX].tagStatus === 'hidden') {
@@ -71,28 +70,28 @@ function Game({ width, height, numberMines, test }) {
     const resetGame = () => {
         setRemainingMines(numberMines)
         setBoard(generateBoard(width, height, numberMines))
-        setGameStatus('before-start')
+        setGameStatus(GAME_STATUS.beforeStart)
         setRemainingCellsToWin(width * height - numberMines)
     }
 
     const pauseGame = () => {
-        setGameStatus('pause')
+        setGameStatus(GAME_STATUS.paused)
     }
 
     const continueGame = () => {
-        setGameStatus('playing')
+        setGameStatus(GAME_STATUS.playing)
     }
 
     const [board, setBoard] = useState(() => {
         return (generateBoard(width, height, numberMines))
     })
     const [remainingMines, setRemainingMines] = useState(numberMines)
-    const [gameStatus, setGameStatus] = useState('before-start')
+    const [gameStatus, setGameStatus] = useState(GAME_STATUS.beforeStart)
     const [remainingCellsToWin, setRemainingCellsToWin] = useState(width * height - numberMines)
 
     useEffect(() => {
         if (remainingCellsToWin === 0) {
-            setGameStatus('win')
+            setGameStatus(GAME_STATUS.won)
             setRemainingMines(0)
         }
     }, [remainingCellsToWin])
@@ -106,7 +105,7 @@ function Game({ width, height, numberMines, test }) {
             {test && <MockData getMockData={getBoardFromMockData} />}
             <table className="Game">
                 <Score remainingMines={remainingMines} resetGame={resetGame} gameStatus={gameStatus} pauseGame={pauseGame} continueGame={continueGame} />
-                {(gameStatus === 'pause') && <PauseModal />}
+                {(gameStatus === GAME_STATUS.paused) && <PauseModal width={width} height={height}/>}
                 <Board board={board} leftClickingCell={leftClickingCell} rightClickingCell={rightClickingCell} gameStatus={gameStatus} />
             </table>
         </>

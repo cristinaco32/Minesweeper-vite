@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from "react";
+import { GAME_STATUS } from '../constants';
 import happyFace from '../assets/win.gif';
 import sadFace from '../assets/lose.gif';
 import neutralFace from '../assets/playing.gif';
@@ -10,14 +11,14 @@ function ResetButton({ gameStatus, resetGame }) {
 
     useEffect(() => {
         switch (gameStatus) {
-            case 'before-start':
-            case 'playing':
+            case GAME_STATUS.beforeStart:
+            case GAME_STATUS.playing:
                 setImagePath(neutralFace)
                 break
-            case 'win':
+            case GAME_STATUS.won:
                 setImagePath(happyFace)
                 break
-            case 'lose':
+            case GAME_STATUS.lost:
                 setImagePath(sadFace)
                 break
         }

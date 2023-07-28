@@ -1,22 +1,22 @@
 import React from 'react';
-import '../style/Score.css';
 import { useEffect, useState } from "react";
 import ResetButton from './ResetButton';
-import pause from '../assets/pause-button.png'
-import play from '../assets/play-button.png'
+import { GAME_STATUS } from '../constants';
+import pauseImg from '../assets/pause-button.png'
+import playImg from '../assets/play-button.png'
+import '../style/Score.css';
 
-//TODO: que es vegi si pause button és disable
-function Score({ remainingMines, resetGame, gameStatus, pauseGame, continueGame }) {
+function Score({ remainingMines, gameStatus, resetGame, pauseGame, continueGame }) {
 
-    const setPlayPauseStatus = () => {
-        if (gameStatus === 'pause') {
+    const changePlayPauseStatus = () => {
+        if (gameStatus === GAME_STATUS.paused) {
             continueGame()
-            setButtonImage(pause)
             startTimer()
-        } else if (gameStatus === 'playing') {
+            setButtonImage(pauseImg)
+        } else if (gameStatus === GAME_STATUS.playing) {
             pauseGame()
             pauseTimer()
-            setButtonImage(play)
+            setButtonImage(playImg)
         } 
     }
 
@@ -40,18 +40,18 @@ function Score({ remainingMines, resetGame, gameStatus, pauseGame, continueGame 
 
     const [timer, setTimer] = useState(0)
     const [timerId, setTimerId] = useState(null)
-    const [buttonImage, setButtonImage] = useState(pause)
+    const [buttonImage, setButtonImage] = useState(pauseImg)
 
     useEffect(() => {
         switch (gameStatus) {
-            case 'before-start':
+            case GAME_STATUS.beforeStart:
                 resetTimer()
                 break
-            case 'playing':
+            case GAME_STATUS.playing:
                 startTimer()
                 break
-            case 'win':
-            case 'lose':
+            case GAME_STATUS.won:
+            case GAME_STATUS.lost:
                 pauseTimer()
                 break
         }
@@ -70,10 +70,10 @@ function Score({ remainingMines, resetGame, gameStatus, pauseGame, continueGame 
                 <td className='Score'>
                     <div data-testid='mines-counter' className='score-mines'>{remainingMines}</div>
                     <ResetButton gameStatus={gameStatus} resetGame={resetGame} />
-                    <button className='button' onClick={setPlayPauseStatus}>
+                    <button className='button' onClick={changePlayPauseStatus}>
                         <img src={buttonImage}></img>
                     </button>
-                    <div data-testid='time-counter' className='score-time'>{(gameStatus !== 'before-start') ? timer : ''}</div>
+                    <div data-testid='time-counter' className='score-time'>{(gameStatus !== GAME_STATUS.beforeStart) ? timer : ''}</div>
                 </td>
             </tr>
         </thead>

@@ -1,6 +1,5 @@
 import { fillBoardWithProximities, generateBoard } from "../boardLogic"
 
-//TODO: controlar entrada mock data errònia + controlar l'altre format
 export const generateBoardFromMockData = (mockData) => {
     let mockDataFormated = null
     if (mockData.includes('|')) {
