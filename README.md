@@ -12,6 +12,6 @@ http://localhost:5173/test
 
 Hem replicat el següent minesweeper: **`http://birrell.org/andrew/minesweeper/`** pero afegint ->
 
-> -Escollir el nivell
-> -Un pause del joc
-> -LocalStorage que guardes el nivell
+> -Escollir el nivell.
+> -Un pause del joc.
+> -LocalStorage que guardes el nivell.
