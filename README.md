@@ -1,8 +1,18 @@
-# React + Vite
+# Minesweeper
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hem replicat el següent minesweeper: **`http://birrell.org/andrew/minesweeper/`** pero afegint ->
 
-Currently, two official plugins are available:
+> - Escollir el nivell.
+> - Un pause del joc.
+> - LocalStorage que guardis el nivell.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Routes
+
+Hem afegit un Route **`react-router-dom`** per la versió testing aixi carregar el mockData.
+
+```bash
+http://localhost:5173/test
+```
+
+
