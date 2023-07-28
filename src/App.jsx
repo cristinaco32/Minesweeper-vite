@@ -46,10 +46,18 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Game width={width} height={height} numberMines={numberMines} test={false} />}></Route>
-        <Route path='/test' element={<Game width={width} height={height} numberMines={numberMines} test={true} />}></Route>
+        <Route path='/' element={
+          <>
+            <Game width={width} height={height} numberMines={numberMines} test={false} />
+            <LevelSettings changeGameLevel={changeGameLevel} />
+          </>
+        }>
+        </Route>
+        <Route path='/test' element={
+          <Game width={width} height={height} numberMines={numberMines} test={true} />
+        }>
+        </Route>
       </Routes>
-      <LevelSettings changeGameLevel={changeGameLevel} />
     </div>
   );
 }

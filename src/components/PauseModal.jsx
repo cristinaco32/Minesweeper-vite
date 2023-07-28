@@ -4,15 +4,20 @@ import '../style/PauseModal.css';
 function PauseModal({ width, height }) {
 
     const modalStyle = {
-        width: `${width * 24}px`,
-        height: `${height * 24}px`
+        width: `${width * 24-4}px`,
+        height: `${height * 24-4}px`
+    }
+
+    if (width < 10) {
+        modalStyle.width = `220px`
     }
 
     return (
-        <tr className='modal-tr'>
-            <div className="modal" style={modalStyle}/>
-        </tr>
-        
+        <tfoot>
+            <tr>
+                <td className="pauseModal" style={modalStyle}></td>
+            </tr>
+        </tfoot>
     )
 }
 

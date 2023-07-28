@@ -1,4 +1,4 @@
-import { fillBoardWithProximities, generateBoard } from "../boardLogic"
+import { fillBoardWithProximities } from "../boardLogic"
 
 export const generateBoardFromMockData = (mockData) => {
     let mockDataFormated = null

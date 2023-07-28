@@ -105,7 +105,7 @@ function Game({ width, height, numberMines, test }) {
             {test && <MockData getMockData={getBoardFromMockData} />}
             <table className="Game">
                 <Score remainingMines={remainingMines} resetGame={resetGame} gameStatus={gameStatus} pauseGame={pauseGame} continueGame={continueGame} />
-                {(gameStatus === GAME_STATUS.paused) && <PauseModal width={width} height={height}/>}
+                {(gameStatus === GAME_STATUS.paused) && <PauseModal width={board[0].length} height={board.length}/>}
                 <Board board={board} leftClickingCell={leftClickingCell} rightClickingCell={rightClickingCell} gameStatus={gameStatus} />
             </table>
         </>
