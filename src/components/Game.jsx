@@ -39,10 +39,10 @@ function Game({ width, height, numberMines, test }) {
             let newRemainingCellsToWin = remainingCellsToWin
             if (board[positionY][positionX].tagStatus === 'flag') {
                 setRemainingMines(remainingMines + 1)
+                newBoard[positionY][positionX].tagStatus = 'uncovered'
             }
             if (board[positionY][positionX].minesAround === 0) {
                 newRemainingCellsToWin -= uncoverCascade(newBoard, positionX, positionY)
-
             }
             setRemainingCellsToWin(newRemainingCellsToWin - 1)
         }
