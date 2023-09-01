@@ -1,4 +1,4 @@
-.Cell {
+/* .Cell {
     box-sizing: border-box;
     width: 24px;
     max-width: 24px;
@@ -29,7 +29,7 @@
     padding: 1px;
     cursor: default;
     pointer-events: none;
-}
+} 
 
 .Cell p {
     text-align: center;
@@ -61,4 +61,4 @@
 
 .cell-5 {
 	color: #006666;
-}
+} */
