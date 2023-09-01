@@ -44,7 +44,7 @@ function App() {
   }, [gameLevel])
 
   return (
-    <div className="flex flex-col items-center mt-6 ">
+    <div className="App">
       <Routes>
         <Route path='/' element={
           <>
