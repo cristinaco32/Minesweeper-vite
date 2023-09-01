@@ -103,7 +103,7 @@ function Game({ width, height, numberMines, test }) {
     return (
         <>
             {test && <MockData getMockData={getBoardFromMockData} />}
-            <table className="Game">
+            <table className="table font-italic mt-4 mb-4 border-spacing-0">
                 <Score remainingMines={remainingMines} resetGame={resetGame} gameStatus={gameStatus} pauseGame={pauseGame} continueGame={continueGame} />
                 {(gameStatus === GAME_STATUS.paused) && <PauseModal width={board[0].length} height={board.length}/>}
                 <Board board={board} leftClickingCell={leftClickingCell} rightClickingCell={rightClickingCell} gameStatus={gameStatus} />

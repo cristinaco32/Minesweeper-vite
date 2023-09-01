@@ -5,6 +5,7 @@ import { GAME_STATUS } from '../constants';
 import pauseImg from '../assets/pause-button.png'
 import playImg from '../assets/play-button.png'
 import '../style/Score.css';
+import '../App.css';
 
 function Score({ remainingMines, gameStatus, resetGame, pauseGame, continueGame }) {
 
@@ -65,15 +66,16 @@ function Score({ remainingMines, gameStatus, resetGame, pauseGame, continueGame 
     }, [timer])
 
     return (
-        <thead className='flex flex-col self-center'>
-            <tr>
-                <td className='Score'>
-                    <div data-testid='mines-counter' className='score-mines'>{remainingMines}</div>
+        <thead className="flex flex-col self-center">
+            <tr className="table-row">
+                <td className="flex flex-row justify-between items-center bg-ms-color-3 m-0 border-2 border-solid border-t-ms-color-1 border-r-ms-color-2 border-b-ms-color-2 border-l-ms-color-1
+                p-0 align-middle text-center">
+                    <div data-testid='mines-counter' className="m-10 border-1 border-none border-color-100 pr-3 w-7 min-w-24 bg-black text-red-600 text-2xl font-bold leading-none text-right block">{remainingMines}</div>
                     <ResetButton gameStatus={gameStatus} resetGame={resetGame} />
-                    <button className='button' onClick={changePlayPauseStatus}>
-                        <img src={buttonImage}></img>
+                    <button className='w-10 h-10 m-0.5' onClick={changePlayPauseStatus}>
+                        <img className="w-6 h-6 overflow-clip" src={buttonImage}></img>
                     </button>
-                    <div data-testid='time-counter' className='score-time'>{(gameStatus !== GAME_STATUS.beforeStart) ? timer : ''}</div>
+                    <div data-testid='time-counter' className="m-10 border-1 border-none border-color-100 pr-3 w-7 bg-black text-red-600 text-2xl font-bold leading-none text-right block">{(gameStatus !== GAME_STATUS.beforeStart) ? timer : ''}</div>
                 </td>
             </tr>
         </thead>

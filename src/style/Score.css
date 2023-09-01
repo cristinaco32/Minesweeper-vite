@@ -1,4 +1,4 @@
-.Score {
+/* .Score {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -10,9 +10,9 @@
     padding: 0px;
     vertical-align: middle;
     text-align: center;
-}
+} */
 
-.score-mines, .score-time {
+/* .score-mines, .score-time {
     margin: 10px;
     border: 1px inset #eeeeee;
     padding-right: 3px;
@@ -25,21 +25,21 @@
     line-height: 1;
     text-align: right;
     display: block;
-}
+} */
 
-.button {
+/* .button {
     width: 40px;
     height: 40px;
     margin: 2px;
     background-color: #cccccc;
-    border: 3px groove #eeeeee;
+    border: 3px groove rgb(238, 238, 238);
     padding: 6px;
     vertical-align: middle;
     cursor: pointer;
-}
+} */
 
-.button img {
+/* .button img {
     width: 25px;
     height: 25px;
     overflow: clip;
-}
+} */

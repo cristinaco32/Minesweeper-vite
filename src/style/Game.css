@@ -8,7 +8,7 @@
     color: #000000;
 }
 
- thead {
+thead {
     display: flex;
     flex-direction: column;
     align-self: center; 
@@ -34,6 +34,6 @@ tbody tr {
     align-self: center;
 }
 
-td {
+/* td {
     display: table-cell;
-}
+} */
