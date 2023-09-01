@@ -65,7 +65,7 @@ function Score({ remainingMines, gameStatus, resetGame, pauseGame, continueGame 
     }, [timer])
 
     return (
-        <thead>
+        <thead className='flex flex-col self-center'>
             <tr>
                 <td className='Score'>
                     <div data-testid='mines-counter' className='score-mines'>{remainingMines}</div>
