@@ -1,5 +1,4 @@
 import React from 'react';
-// import '../style/PauseModal.css';
 
 function PauseModal({ width, height }) {
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { GAME_STATUS, TAG_STATUS } from '../constants';
-// import '../style/Cell.css';
 
 function Cell({ positionX, positionY, isMine, minesAround, isCovered, tagStatus, leftClickingCell, rightClickingCell, gameStatus }) {
    
@@ -65,8 +64,8 @@ function Cell({ positionX, positionY, isMine, minesAround, isCovered, tagStatus,
     const [colorClassName, setColorClassName] = useState('')
     const cellClass = "table-cell box-border w-6 min-w-24 max-w-24 h-6 min-h-24 max-h-24 text-base/[18px] font-bold cursor-pointer"
     const coveredClass = "m-0 border-2 border-solid border-t-ms-color-1 border-r-ms-color-2 border-b-ms-color-2 border-l-ms-color-1 bg-ms-color-3 p-0 align-middle text-center"
-    const uncoveredClass = "m-0 bg-ms-color-4 border border-solid border-ms-color-2 p-px cursor-default pointer-events-none"
-    const pClass = "text-center align-middle text-base/[18px] font-bold m-0"
+    const uncoveredClass = "m-0 bg-ms-color-4 border-[1px] border-solid border-ms-color-2 p-px cursor-default pointer-events-none"
+    const pClass = "text-center align-middle text-base/[18px] font-bold m-0 border-0 p-0"
 
     useEffect(() => {
         switch (gameStatus) {

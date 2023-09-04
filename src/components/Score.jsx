@@ -4,8 +4,6 @@ import ResetButton from './ResetButton';
 import { GAME_STATUS } from '../constants';
 import pauseImg from '../assets/pause-button.png'
 import playImg from '../assets/play-button.png'
-import '../style/Score.css';
-import '../App.css';
 
 function Score({ remainingMines, gameStatus, resetGame, pauseGame, continueGame }) {
 
@@ -69,12 +67,12 @@ function Score({ remainingMines, gameStatus, resetGame, pauseGame, continueGame 
         <thead className="flex flex-col self-center">
             <tr className="table-row">
                 <td className="flex flex-row justify-between items-center bg-ms-color-3 m-0 border-2 border-solid border-t-ms-color-1 border-r-ms-color-2 border-b-ms-color-2 border-l-ms-color-1 p-0 align-middle text-center">
-                    <div data-testid='mines-counter' className="m-2.5 w-[1.75em] border-1 border-solid border-t-ms-color-1 border-r-black border-b-black border-l-ms-color-1 pr-[3px] min-h-24 bg-black text-red-600 text-2xl/[1] font-bold text-right block">{remainingMines}</div>
+                    <div data-testid='mines-counter' className="m-2.5 w-[1.75em] border-[1px] border-solid border-t-ms-color-1 border-r-black border-b-black border-l-ms-color-1 pr-[3px] min-h-24 bg-black text-red-600 text-2xl/[1] font-bold text-right block">{remainingMines}</div>
                     <ResetButton gameStatus={gameStatus} resetGame={resetGame} />
                     <button className='w-10 h-10 m-0.5 bg-ms-color-3 p-1.5 align-middle cursor-pointer' onClick={changePlayPauseStatus}>
                         <img className="w-6 h-6 overflow-clip" src={buttonImage}></img>
                     </button>
-                    <div data-testid='time-counter' className="m-2.5 w-[1.75em] border-1 border-solid border-t-ms-color-1 border-r-black border-b-black border-l-ms-color-1 pr-[3px] min-h-24 bg-black text-red-600 text-2xl/[1] font-bold text-right block">{(gameStatus !== GAME_STATUS.beforeStart) ? timer : ''}</div>
+                    <div data-testid='time-counter' className="m-2.5 w-[1.75em] border-[1px] border-solid border-t-ms-color-1 border-r-black border-b-black border-l-ms-color-1 pr-[3px] min-h-24 bg-black text-red-600 text-2xl/[1] font-bold text-right block">{(gameStatus !== GAME_STATUS.beforeStart) ? timer : ''}</div>
                 </td>
             </tr>
         </thead>

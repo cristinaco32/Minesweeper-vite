@@ -1,5 +1,4 @@
 import React from 'react';
-// import '../style/Game.css';
 import { useEffect, useState } from "react";
 import Board from "./Board";
 import Score from "./Score";
@@ -103,7 +102,7 @@ function Game({ width, height, numberMines, test }) {
     return (
         <>
             {test && <MockData getMockData={getBoardFromMockData} />}
-            <table className="table font-italic mt-4 mb-4 border-spacing-0 text-black">
+            <table className="table font-italic mt-[1em] mb-[1em] border-spacing-0 text-black">
                 <Score remainingMines={remainingMines} resetGame={resetGame} gameStatus={gameStatus} pauseGame={pauseGame} continueGame={continueGame} />
                 {(gameStatus === GAME_STATUS.paused) && <PauseModal width={board[0].length} height={board.length}/>}
                 <Board board={board} leftClickingCell={leftClickingCell} rightClickingCell={rightClickingCell} gameStatus={gameStatus} />

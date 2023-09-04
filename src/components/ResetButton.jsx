@@ -28,7 +28,6 @@ function ResetButton({ gameStatus, resetGame }) {
         <button className='w-10 h-10 m-0.5 bg-ms-color-3 p-1.5 align-middle cursor-pointer' data-testid='reset-button' onClick={resetGame}>
             <img className="w-6 h-6 overflow-clip" src={imagePath} alt={gameStatus}></img>
         </button>
-
     );
 }
 
