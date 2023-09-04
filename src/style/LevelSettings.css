@@ -1,4 +1,4 @@
-.level-settings {
+/* .level-settings {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -6,7 +6,7 @@
     background-color: #2b2b2b;
     margin: 0 350px 0 350px;
     border-radius: 20px;
-}
+} */
 
 .level {
     margin: 0 10px 0 10px;
