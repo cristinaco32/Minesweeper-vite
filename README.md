@@ -14,6 +14,10 @@ Mitjançant **`react-router-dom`** hem afegit les següents rutes:
 > - */* -> versió normal
 > - */test* -> versió testing que permet carregar un mockData.
 
+## Nova branca de TailWind
+
+Hem creat una nova branca anomenada **`tailWind`** on tenim tots els canvis del css. Així separant-lo del projecte base per poder seguir amb el testing
+
 
 
 
