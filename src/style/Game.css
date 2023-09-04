@@ -1,38 +1,38 @@
 
-.Game {
+/* .Game {
     display: table;
     font-family: italic;
     margin-top: 1em;
     margin-bottom: 1em;
     border-spacing: 0px;
     color: #000000;
-}
+} */
 
-thead {
+/* thead {
     display: flex;
     flex-direction: column;
     align-self: center; 
-} 
-
+}  */
+/* 
 tbody {
     display: flex;
     flex-direction: column;
     align-self: center; 
-}
-
+} */
+/* 
 tfoot {
     display: flex;
     flex-direction: column;
     align-self: center; 
-}
+} */
 
-tr {
+/* tr {
     display: table-row;
-}
+} */
 
-tbody tr {
+/* tbody tr {
     align-self: center;
-}
+} */
 
 /* td {
     display: table-cell;

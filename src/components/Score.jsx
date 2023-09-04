@@ -68,14 +68,13 @@ function Score({ remainingMines, gameStatus, resetGame, pauseGame, continueGame 
     return (
         <thead className="flex flex-col self-center">
             <tr className="table-row">
-                <td className="flex flex-row justify-between items-center bg-ms-color-3 m-0 border-2 border-solid border-t-ms-color-1 border-r-ms-color-2 border-b-ms-color-2 border-l-ms-color-1
-                p-0 align-middle text-center">
-                    <div data-testid='mines-counter' className="m-10 border-1 border-none border-color-100 pr-3 w-7 min-w-24 bg-black text-red-600 text-2xl font-bold leading-none text-right block">{remainingMines}</div>
+                <td className="flex flex-row justify-between items-center bg-ms-color-3 m-0 border-2 border-solid border-t-ms-color-1 border-r-ms-color-2 border-b-ms-color-2 border-l-ms-color-1 p-0 align-middle text-center">
+                    <div data-testid='mines-counter' className="m-2.5 w-[1.75em] border-1 border-solid border-t-ms-color-1 border-r-black border-b-black border-l-ms-color-1 pr-[3px] min-h-24 bg-black text-red-600 text-2xl/[1] font-bold text-right block">{remainingMines}</div>
                     <ResetButton gameStatus={gameStatus} resetGame={resetGame} />
-                    <button className='w-10 h-10 m-0.5' onClick={changePlayPauseStatus}>
+                    <button className='w-10 h-10 m-0.5 bg-ms-color-3 p-1.5 align-middle cursor-pointer' onClick={changePlayPauseStatus}>
                         <img className="w-6 h-6 overflow-clip" src={buttonImage}></img>
                     </button>
-                    <div data-testid='time-counter' className="m-10 border-1 border-none border-color-100 pr-3 w-7 bg-black text-red-600 text-2xl font-bold leading-none text-right block">{(gameStatus !== GAME_STATUS.beforeStart) ? timer : ''}</div>
+                    <div data-testid='time-counter' className="m-2.5 w-[1.75em] border-1 border-solid border-t-ms-color-1 border-r-black border-b-black border-l-ms-color-1 pr-[3px] min-h-24 bg-black text-red-600 text-2xl/[1] font-bold text-right block">{(gameStatus !== GAME_STATUS.beforeStart) ? timer : ''}</div>
                 </td>
             </tr>
         </thead>
