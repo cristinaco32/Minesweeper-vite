@@ -5,7 +5,8 @@ import { GAME_STATUS } from '../constants';
 function Board({ board, leftClickingCell, rightClickingCell, gameStatus }) {
 
     return (
-        <tbody data-testid='board' className={(gameStatus === GAME_STATUS.playing || gameStatus === GAME_STATUS.beforeStart) ? "mb-1 flex flex-col self-center" : "mb-1 pointer-events-none flex flex-col self-center"}>    {
+        <tbody data-testid='board' className={(gameStatus === GAME_STATUS.playing || gameStatus === GAME_STATUS.beforeStart) ? "mb-1 flex flex-col self-center" : "mb-1 pointer-events-none flex flex-col self-center"}>
+            {
                 board.map((row, indexY) => {
                     return (
                         <tr key={indexY} className='table-row self-center border-0 p-0 m-0'>
