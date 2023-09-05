@@ -9,7 +9,7 @@ function Board({ board, leftClickingCell, rightClickingCell, gameStatus }) {
             {
                 board.map((row, indexY) => {
                     return (
-                        <tr key={indexY} className='table-row self-center border-0 p-0 m-0'>
+                        <tr key={indexY} className='table-row max-h-24 self-center border-0 p-0 m-0'>
                             {row.map((cell, indexX) => {
                                 return (
                                     <Cell
