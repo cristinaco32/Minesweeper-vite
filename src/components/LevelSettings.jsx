@@ -1,5 +1,4 @@
 import React from 'react';
-import '../style/LevelSettings.css';
 
 function LevelSettings({ changeGameLevel }) {
   return (

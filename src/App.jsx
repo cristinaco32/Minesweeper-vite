@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import Game from './components/Game'
 import LevelSettings from './components/LevelSettings';
+import API from './components/API'
 import { saveLevelSettings } from './logic/storage/storage.js';
 import './App.css';
 
@@ -50,6 +51,7 @@ function App() {
           <>
             <Game width={width} height={height} numberMines={numberMines} test={false} />
             <LevelSettings changeGameLevel={changeGameLevel} />
+            <API />
           </>
         }>
         </Route>
