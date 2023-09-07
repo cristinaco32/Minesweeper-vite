@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from 'react';
 
 function API() {
-    const [number, setNumber] = useState()
     const [fact, setFact] = useState()
+    const [image, setImage] = useState()
 
     useEffect(() => {
         fetch(('http://numbersapi.com/random/math'))
-            .then(res => JSON.stringify(res))
+            .then(res => res.text())
             .then(text => {
-                console.log(text)
-                // const num = text.split(' ')[0]
-                // setNumber(num)
-
-                // fetch(`http://numbersapi.com/${number}`)
-                //     .then(response => response.json())
-                //     .then(data => {
-                //         console.log(data)
-                //         setFact(data)
-                //     })
+                setFact(text)
+                fetch(`https://cataas.com/cat/says/${text}?json=true`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const {url} = data
+                        setImage(url)
+                    })
             })
     }, [])
 
     return (
         <div>
-            {fact && <p>{fact}</p>}
+            {image && <img className='max-w-lg max-h-50 mt-5 mr-5' 
+            src={`https://cataas.com/${image}`} alt='Random image of a cat with a number fact'/>}
         </div>
+        
     )
 }
 

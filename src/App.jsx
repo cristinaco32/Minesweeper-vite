@@ -45,12 +45,14 @@ function App() {
   }, [gameLevel])
 
   return (
-    <div className="flex flex-col items-center mt-6">
+    <div className='flex flex-row' >
       <Routes>
         <Route path='/' element={
           <>
-            <Game width={width} height={height} numberMines={numberMines} test={false} />
-            <LevelSettings changeGameLevel={changeGameLevel} />
+            <div className="flex flex-col items-center mt-6">
+              <Game width={width} height={height} numberMines={numberMines} test={false} />
+              <LevelSettings changeGameLevel={changeGameLevel} />
+            </div>
             <API />
           </>
         }>
